@@ -23,24 +23,28 @@ export default {
 
 <style scoped lang="scss">
 @import "src/assets/style/helper.scss";
+
 nav {
   display: flex;
-  box-shadow:  0 0 3px rgba(0,0,0,0.25);
+  @extend %outerShadow;
   flex-direction: row;
   font-size: 12px;
-  > .item{
+
+  > .item {
     padding: 2px 0;
     width: 33.33333%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-      .icon{
-        width: 30px;
-        height: 30px;
-      }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+    }
   }
-  > .item.selected{
+
+  > .item.selected {
     color: $color-highlight;
   }
 }
