@@ -16,7 +16,7 @@
 
   @Component
   export default class FromItem extends Vue{
-    value = '';
+    @Prop({default:''}) value!:string;
 
     @Prop({required:true})fileName!:string
 
