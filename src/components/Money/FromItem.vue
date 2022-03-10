@@ -3,7 +3,8 @@
     <label class="fromItem">
       <span class="name">{{ this.fileName }}</span>
       <input type="text"
-             v-model="value"
+             :value="value"
+             @input="onValueChanged($event.target.value)"
              :placeholder="this.placeholder">
     </label>
   </div>
@@ -16,7 +17,7 @@
 
   @Component
   export default class FromItem extends Vue{
-    @Prop({default:''}) value!:string;
+    @Prop({default:''}) readonly value!:string;
 
     @Prop({required:true})fileName!:string
 
