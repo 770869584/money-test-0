@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="notes">
+    <label class="fromItem">
       <span class="name">{{ this.fileName }}</span>
       <input type="text"
              v-model="value"
@@ -15,7 +15,7 @@
   import {Component, Prop, Watch} from 'vue-property-decorator';
 
   @Component
-  export default class Notes extends Vue{
+  export default class FromItem extends Vue{
     value = '';
 
     @Prop({required:true})fileName!:string
@@ -31,9 +31,8 @@
 <style scoped lang="scss">
 @import "../../assets/style/helper";
 
-.notes {
+.fromItem {
   font-size: 14px;
-  background: #f5f5f5;
   padding-left: 16px;
   display: flex;
   align-items: center;
@@ -43,7 +42,7 @@
   }
 
   input {
-    height: 64px;
+    height: 44px;
     flex-grow: 1;
     background: transparent;
     border: none;
