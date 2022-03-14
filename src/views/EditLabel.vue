@@ -6,7 +6,7 @@
       <span class="rightIcon"></span>
     </div>
     <div class="formWrapper">
-      <FromItem file-name="标签名" placeholder="请输入标签名"/>
+      <FromItem :value="tag.name" file-name="标签名" placeholder="请输入标签名"/>
 
     </div>
     <div class="buttonWrapper">
@@ -18,31 +18,33 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import FromItem from '@/components/Money/FromItem.vue';
-
 import {Component} from 'vue-property-decorator';
 import tagListModel from '@/models/tagListModel';
+import FromItem from '@/components/Money/FromItem.vue';
 import Button from '@/components/Button.vue';
+
 @Component({
   components: {Button, FromItem}
 })
 export default class EditLabel extends Vue {
-  create() {
+  tag?: { id: string, name: string } = undefined;
+  created() {
     const id = this.$route.params.id;
     tagListModel.fetch();
     const tags = tagListModel.data;
     const tag = tags.filter(t => t.id === id)[0];
     if (tag) {
-
+      this.tag = tag;
     } else {
       this.$router.replace('/404');
     }
   }
 }
+
 </script>
 
 <style scoped lang="scss">
-.navBar{
+.navBar {
   text-align: center;
   font-size: 16px;
   padding: 12px 16px;
@@ -50,23 +52,28 @@ export default class EditLabel extends Vue {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  > .title{
+
+  > .title {
   }
-  > .leftIcon{
+
+  > .leftIcon {
     width: 24px;
     height: 24px;
   }
-  >.rightIcon{
+
+  > .rightIcon {
     width: 24px;
     height: 24px;
 
   }
 }
-.formWrapper{
+
+.formWrapper {
   background: white;
   margin-top: 8px;
 }
-.buttonWrapper{
+
+.buttonWrapper {
   text-align: center;
   padding: 16px;
   margin-top: 44-16px;

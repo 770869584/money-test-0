@@ -22,7 +22,6 @@
     @Prop({required:true})fileName!:string
 
     @Prop()placeholder?:string
-    @Watch('value')
     onValueChanged(value:string){
       this.$emit('update:value',value)
     }
