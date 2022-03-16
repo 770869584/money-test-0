@@ -3,7 +3,7 @@
     <div class="tags">
       <router-link class="tag" v-for="tag in tags" :key="tag.id"
                    :to="`/labels/edit/${tag.id}`">
-        <span>{{tag.name}}</span>
+        <span>{{ tag.name }}</span>
         <Icon name="right"/>
       </router-link>
 
@@ -11,7 +11,8 @@
     <div class="createTag-wrapper">
       <Button class="createTag"
               @click="createTag">
-        新建标签</Button>
+        新建标签
+      </Button>
     </div>
   </Layout>
 </template>
@@ -28,15 +29,11 @@ import Button from '@/components/Button.vue';
 })
 export default class Labels extends Vue {
   tags = window.tagList;
+
   createTag() {
     const name = window.prompt('请输出标签名');
     if (name) {
-      const message = tagListModel.create(name);
-      if (message === 'duplicated') {
-        window.alert('标签名重复了');
-      } else if (message === 'success') {
-        window.alert('添加成功');
-      }
+      window.createTag(name);
     }
   }
 }
