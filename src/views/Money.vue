@@ -19,7 +19,6 @@ import Tags from '@/components/Money/Tags.vue';
 import Component from 'vue-class-component';
 import {Watch} from 'vue-property-decorator';
 import recordListModel from '@/models/recordListModel';
-import tagListModel from '@/models/tagListModel';
 
 // const model = require('@/model.js').default;
 // // const version = window.localStorage.getItem('version') || 0;
