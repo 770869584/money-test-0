@@ -16,29 +16,23 @@ import NumberPad from '@/components/Money/NumberPad.vue';
 import FromItem from '@/components/Money/FromItem.vue';
 import Types from '@/components/Money/Types.vue';
 import Tags from '@/components/Money/Tags.vue';
-import Component from 'vue-class-component';
-import store from '@/store/index2';
-
-// const model = require('@/model.js').default;
-// // const version = window.localStorage.getItem('version') || 0;
-// const recordList: RecordItem[] = model.fetch();
-// if (version === '0.0.1') {
-//   recordList.forEach(record => {record.createdAt = new Date(2000, 0, 0);});
-//   //保存数据
-//   window.localStorage.setItem('recordList', JSON.stringify(recordList));
-//
-// }
-// window.localStorage.setItem('version', '0.0.1');
+import {Component} from 'vue-property-decorator';
 
 @Component({
-  components: {Tags, Types, FromItem, NumberPad},
-  recordList(){
-    return store.recordList
+  components:{Tags,Types,FromItem,NumberPad},
+  computed:{
+    recordList() {
+      return this.$store.state.recordList;
+    }
   }
-
 })
+
+
 export default class Money extends Vue {
   record: RecordItem = {tags: [], notes: '', type: '-', amount: 0};
+  created(){
+    this.$store.commit('fetchRecords')
+  }
 
   onUpdateNotes(value: string) {
     this.record.notes = value;
@@ -49,7 +43,7 @@ export default class Money extends Vue {
   }
 
   saveRecord() {
-   store.createRecord(this.record);
+    this.$store.commit('createRecord',this.record);
   }
 };
 </script>
