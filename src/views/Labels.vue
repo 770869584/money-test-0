@@ -29,7 +29,7 @@ import {Component} from 'vue-property-decorator';
   components: {Button},
 })
 export default class Labels extends mixins(TagHelper) {
-  get tag(){
+  get tags(){
     return this.$store.state.tagList;
 
   }

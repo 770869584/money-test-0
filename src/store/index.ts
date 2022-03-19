@@ -6,15 +6,15 @@ import createId from '@/lib/idCreator';
 Vue.use(Vuex);
 
 type RootState = {
-  recordList:  RecordItem[],
-  tagList:  Tag[],
+  recordList: RecordItem[],
+  tagList: Tag[],
   currentTag?: Tag
 }
 
 const store = new Vuex.Store({
   state: {
-    recordList:  [],
-    tagList:  [],
+    recordList: [],
+    tagList: [],
     currentTag: undefined
   } as RootState,
   mutations: {
@@ -33,7 +33,7 @@ const store = new Vuex.Store({
     fetchTags(state) {
       return state.tagList = JSON.parse(window.localStorage.getItem('tagList') || '[]');
     },
-    createTag(state,name: string) {
+    createTag(state, name: string) {
       const names = state.tagList.map(item => item.name);
       const id = createId().toString();
       if (names.indexOf(name) >= 0) {
@@ -46,8 +46,38 @@ const store = new Vuex.Store({
     saveTags(state) {
       window.localStorage.setItem('tagList', JSON.stringify(state.tagList));
     },
-    findTag(state,id: string) {
-      state.currentTag =  state.tagList.filter(tags => tags.id === id)[0];
+    findTag(state, id: string) {
+      state.currentTag = state.tagList.filter(tags => tags.id === id)[0];
+    },
+    updateTag(state, payload: { id: string, name: string }) {
+      const {id,name} = payload;
+      const idList = state.tagList.map(item => item.id);
+      if (idList.indexOf(id) >= 0) {
+        const names = state.tagList.map(item => item.name);
+        if (names.indexOf(name) >= 0) {
+          window.alert('标签名重复了')
+        } else {
+          const tag = state.tagList.filter(item => item.id === id)[0];
+          tag.name = name;
+          store.commit('saveTags')
+        }
+      }
+    },
+    removeTag(state,id: string){
+      let index = -1;
+      for (let i = 0; i < state.tagList.length; i++) {
+        if (state.tagList[i].id === id) {
+          index = i;
+          break;
+        }
+      }
+
+      if (index >= 0){
+        state.tagList.splice(index, 1);
+        store.commit('saveTags')
+      } else {
+        window.alert('删除失败')
+      }
     },
   },
   actions: {},
