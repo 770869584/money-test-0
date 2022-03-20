@@ -13,14 +13,13 @@
 import Vue from 'vue';
 import NumberPad from '@/components/Money/NumberPad.vue';
 import FromItem from '@/components/Money/FromItem.vue';
-import Types from '@/components/Money/Types.vue';
 import Tags from '@/components/Money/Tags.vue';
 import {Component} from 'vue-property-decorator';
 import recordTypeList from '@/constant/recordTypeList';
 import Tabs from '@/components/Tabs.vue';
 
 @Component({
-  components:{Tabs, Tags,Types,FromItem,NumberPad},
+  components:{Tabs, Tags,FromItem,NumberPad},
 
 })
 
