@@ -22,7 +22,9 @@
     }
   }
 }
-
+::v-deep .interval-tabs-item{
+  height: 48px;
+}
 </style>
 
 <script lang="ts">
@@ -38,6 +40,8 @@ import recordTypeList from '@/constant/recordTypeList';
   }
 })
 export default class Statistics extends Vue {
+  type='-';
+  interval='day'
   intervalList = intervalList;
   recordTypeList = recordTypeList;
 };
