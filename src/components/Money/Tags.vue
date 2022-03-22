@@ -30,6 +30,9 @@ export default class Tags extends mixins(TagHelper) {
   }
   toggle(tag: string) {
     const index = this.selectedTags.indexOf(tag);
+    console.log(tag);
+    console.log(index);
+
     if (index >= 0) {
       this.selectedTags.splice(index, 1);
     } else {
@@ -37,6 +40,7 @@ export default class Tags extends mixins(TagHelper) {
     }
     this.$emit('update:value', this.selectedTags);
   }
+
 };
 </script>
 

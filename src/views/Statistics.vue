@@ -7,7 +7,7 @@
         <h3 class="title">{{ group.title }}</h3>
         <ol>
           <li v-for="item in group.items" :key="item.id" class="record">
-            <span>{{ tagString(item.tags) }}</span>
+            <span>{{ item.tags[0] }}</span>
             <span class="note">{{ item.notes }}</span>
             <span>￥{{ item.amount }}</span>
           </li>

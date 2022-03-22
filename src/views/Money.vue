@@ -5,7 +5,7 @@
     <div class="notes">
       <FromItem file-name="备注" @update:value="onUpdateNotes" placeholder="在这里输入备注"/>
     </div>
-    <Tags/>
+    <Tags @update:value="toggle"/>
   </Layout>
 </template>
 
@@ -40,9 +40,13 @@ export default class Money extends Vue {
     this.record.notes = value;
   }
 
+  toggle(tag:[]) {
+    this.record.tags = tag;
+  }
   onUpdateAmount(value: string) {
     this.record.amount = parseFloat(value);
   }
+
 
   saveRecord() {
     this.$store.commit('createRecord',this.record);
