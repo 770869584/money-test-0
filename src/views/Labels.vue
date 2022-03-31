@@ -18,7 +18,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import {mixins} from 'vue-class-component';
 import Button from '@/components/Button.vue';
 import TagHelper from '@/mixins/TagHelper';
