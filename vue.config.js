@@ -3,7 +3,9 @@ const path = require('path');
 
 
 module.exports = {
-  publicPath: '',
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/morney-3-website/'
+    : '/',
   lintOnSave: false,
   chainWebpack: config => {
     const dir = path.resolve(__dirname, 'src/assets/icons');
